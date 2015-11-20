@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ReferenceDataTemplates</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{20491679-f418-47d3-b1c2-846080d1b040}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ReferenceData</RootNamespace>
+    <AssemblyName>ReferenceData</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Prime Data" />
+    <Folder Include="Scripts" />
+    <Folder Include="Templates" />
+    <Folder Include="Templates\1 - Create XML File" />
+    <Folder Include="Templates\2 - Create Merge" />
+    <Folder Include="Templates\Common" />
+    <Folder Include="Scripts\Post-Deployment" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\1 - Create XML File\Create XML Data SQL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\1 - Create XML File\Create XML Data.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\2 - Create Merge\Create Prime Merge Statement.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\2 - Create Merge\Generate Merge Statements.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\Table Metadata.xml" />
+    <None Include="Templates\Template Readme.md" />
+    <None Include="Templates\Common\SQLConnection.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\Common\TemplateHelper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Prime Data\Sales.SalesPerson.xml" />
+    <None Include="Templates\Generate Prime Data XML.txt">
+      <DependentUpon>Templates\Generate Prime Data XML.tt</DependentUpon>
+    </None>
+    <None Include="Templates\1 - Create XML File\Create XML Data SQL.txt">
+      <DependentUpon>Templates\1 - Create XML File\Create XML Data SQL.tt</DependentUpon>
+    </None>
+    <None Include="Templates\1 - Create XML File\Create XML Data.txt">
+      <DependentUpon>Templates\1 - Create XML File\Create XML Data.tt</DependentUpon>
+    </None>
+    <None Include="Templates\1 - Create XML File\Generate Prime Data XML.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\1 - Create XML File\Generate Prime Data XML.txt">
+      <DependentUpon>Templates\1 - Create XML File\Generate Prime Data XML.tt</DependentUpon>
+    </None>
+    <None Include="Prime Data\Sales.SpecialOffer.xml" />
+    <None Include="Templates\2 - Create Merge\Create Prime Merge Statement.txt">
+      <DependentUpon>Templates\2 - Create Merge\Create Prime Merge Statement.tt</DependentUpon>
+    </None>
+    <None Include="Templates\2 - Create Merge\Generate Merge Statements.txt">
+      <DependentUpon>Templates\2 - Create Merge\Generate Merge Statements.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Templates\2 - Create Merge\SQLConnection.cs">
+      <DependentUpon>Templates\2 - Create Merge\SQLConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Common\TemplateHelper.cs">
+      <DependentUpon>Templates\Common\TemplateHelper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Generate Prime Data XML.cs">
+      <DependentUpon>Templates\Generate Prime Data XML.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Common\SQLConnection.cs">
+      <DependentUpon>Templates\Common\SQLConnection.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Post-Deployment\PrimeDataMerge.sql" />
+  </ItemGroup>
+</Project>

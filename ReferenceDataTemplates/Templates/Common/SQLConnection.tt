@@ -1,0 +1,27 @@
+﻿<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#+
+
+	public string GetSQLServerInstance() {
+		return "servername";
+	}
+
+	public string GetSQLUsername() {
+		return "username";
+	}
+
+	public string GetSQLPassword() {
+		return "";
+	}
+
+	public string GetSQLDatabase() {
+		return "databasename";
+	}
+
+	public bool GetSecureLogin() {
+	  return true;
+	}
+
+#>

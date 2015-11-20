@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<tables>
+  <table name="SpecialOffer" schema="Sales" type="prime" indexkey="PK_SpecialOffer_SpecialOfferID"></table>
+  <table name="SalesPerson"  schema="Sales" type="prime" indexkey="PK_SalesPerson_BusinessEntityID"></table>
+</tables>

@@ -1,0 +1,13 @@
+﻿
+SELECT 
+       "@BusinessEntityID" = ISNULL(CAST(BusinessEntityID AS NVARCHAR(16)), ''),
+       "@TerritoryID" = ISNULL(CAST(TerritoryID AS NVARCHAR(16)), ''),
+       "@SalesQuota" = ISNULL(CAST(SalesQuota AS NVARCHAR(30)), ''),
+       "@Bonus" = ISNULL(CAST(Bonus AS NVARCHAR(30)), ''),
+       "@CommissionPct" = ISNULL(CAST(CommissionPct AS NVARCHAR(30)), ''),
+       "@SalesYTD" = ISNULL(CAST(SalesYTD AS NVARCHAR(30)), ''),
+       "@SalesLastYear" = ISNULL(CAST(SalesLastYear AS NVARCHAR(30)), ''),
+       "@rowguid" = ISNULL(CAST(rowguid AS VARCHAR(50)), '') ,
+       "@ModifiedDate" = ISNULL(CAST(ModifiedDate AS NVARCHAR(30)), '')
+FROM    [Sales].[SalesPerson]
+FOR XML PATH('Row'), ROOT('SalesPerson')

@@ -1,0 +1,70 @@
+﻿<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+
+    public string SetTableName(string TableName) {
+    
+        var returnValue = "tablename";
+    
+        if (TableName != null || TableName != "") {
+              returnValue = TableName;
+          }
+    
+          return returnValue;
+    
+    }
+    
+    public string SetSchemaName(string SchemaName) {
+    
+        var returnValue = "dbo";
+    
+          if (SchemaName != null || SchemaName != "") {
+           returnValue = SchemaName;
+         }
+    
+       return returnValue;
+    
+    }
+      
+    public string SetIndexName(string IndexKey) {
+    
+       var returnValue = "SomeUniqueIndex";
+    
+          if (IndexKey != null || IndexKey != "") {
+              returnValue = IndexKey;
+          }
+    
+          return returnValue;
+    
+        }
+    
+    public bool isMetaColumn(string columnName) {
+        var returnValue = false;
+    
+        Dictionary<int, string> metaColumns = new Dictionary<int, string>() {
+            {1,"CreatedBy"} ,
+            {2,"CreatedOn"} , 
+            {3,"UpdatedBy"} ,
+            {4,"UpdatedOn"} ,
+            {5,"DeactivatedBy"} ,
+            {6,"DeactivatedOn"} ,
+            {7,"Created_By"} ,
+            {8,"Created_Date"} , 
+            {9,"Last_Updated_By"} ,
+            {10,"Last_Updated_Date"} 
+        };
+    
+        foreach (var value in metaColumns.Values) {
+            if(columnName == value) {
+                returnValue = true;
+            break;
+            }
+        }  
+      
+        return returnValue;
+    }
+
+#>

@@ -1,0 +1,79 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".txt" #>
+<#@ assembly Name="System.Core" #>
+<#@ assembly name="Microsoft.SqlServer.ConnectionInfo" #>
+<#@ assembly name="Microsoft.SqlServer.Smo" #>
+<#@ assembly name="Microsoft.SqlServer.Management.Sdk.Sfc" #>
+<#@ assembly name="System.Data.dll" #>
+<#@ assembly name="System.Xml.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Common" #>
+<#@ import namespace="System.Data" #>
+<#@ include file="..\Common\SQLConnection.tt" #>
+<#@ include file="..\Common\TemplateHelper.tt" #><#@ parameter type="System.String" name="TableName" #><#@ parameter type="System.String" name="SchemaName" #><#
+
+    var tableName = SetTableName(TableName);
+    var schemaName = SetSchemaName(SchemaName);
+
+    // If running a single table uncomment and change the table name.
+    //schemaName = "Sales";
+    //tableName = "SalesPerson";
+    
+    ServerConnection serverConn = new ServerConnection();
+    serverConn.ServerInstance = GetSQLServerInstance();
+    if (GetSecureLogin() == true) {
+      serverConn.LoginSecure = true;
+    } else {
+      serverConn.LoginSecure = false;
+      serverConn.Login = GetSQLUsername();
+      serverConn.Password = GetSQLPassword();
+    }
+
+    Server server = new Server(serverConn);
+    Database database = new Database(server, GetSQLDatabase());
+
+    DataSet dsXml = database.ExecuteWithResults(GetSQL(tableName, schemaName));
+
+    string xmlOutput = "";
+
+    if ((dsXml != null) && (dsXml.Tables.Count > 0) && (dsXml.Tables[0].Rows.Count > 0)) {
+        var rowctr = 0;
+        foreach (DataRow r in dsXml.Tables[0].Rows)
+        {
+            xmlOutput += dsXml.Tables[0].Rows[rowctr][0].ToString();
+            rowctr += 1;
+        }
+    }
+
+    WriteLine("<?xml version=\"1.0\" encoding=\"utf-16\" ?>");
+    WriteLine(xmlOutput.Replace(">", ">\r\n"));
+
+#><#+
+  // Insert any template procedures here
+  public string GetSQL(string tableName, string schemaName)
+  {
+
+    string templateFileName = "Create XML Data SQL.tt";
+    string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+    //string outputFilePath = Path.Combine(templateDirectory, outputFileName);
+
+    TextTemplatingSession session = new TextTemplatingSession();
+    session["TableName"] = tableName;
+    session["SchemaName"] = schemaName;
+
+    var sessionHost = (ITextTemplatingSessionHost) this.Host;
+    sessionHost.Session = session;
+
+    string template = File.ReadAllText(Host.ResolvePath(templateFileName));
+    Engine engine = new Engine();
+    string output = engine.ProcessTemplate(template, this.Host);
+
+    return output;
+  }
+
+#>

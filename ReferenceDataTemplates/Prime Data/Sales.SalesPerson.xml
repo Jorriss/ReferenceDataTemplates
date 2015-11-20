@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-16" ?>
+<SalesPerson>
+<Row BusinessEntityID="274" TerritoryID="" SalesQuota="" Bonus="0.00" CommissionPct="0.00" SalesYTD="559697.56" SalesLastYear="0.00" rowguid="48754992-9EE0-4C0E-8C94-9451604E3E02" ModifiedDate="Jan 28 2005 12:00AM"/>
+<Row BusinessEntityID="275" TerritoryID="2" SalesQuota="300000.00" Bonus="4100.00" CommissionPct="0.01" SalesYTD="3763178.18" SalesLastYear="1750406.48" rowguid="1E0A7274-3064-4F58-88EE-4C6586C87169" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="276" TerritoryID="4" SalesQuota="250000.00" Bonus="2000.00" CommissionPct="0.02" SalesYTD="4251368.55" SalesLastYear="1439156.03" rowguid="4DD9EEE4-8E81-4F8C-AF97-683394C1F7C0" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="277" TerritoryID="3" SalesQuota="250000.00" Bonus="2500.00" CommissionPct="0.02" SalesYTD="3189418.37" SalesLastYear="1997186.20" rowguid="39012928-BFEC-4242-874D-423162C3F567" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="278" TerritoryID="6" SalesQuota="250000.00" Bonus="500.00" CommissionPct="0.01" SalesYTD="1453719.47" SalesLastYear="1620276.90" rowguid="7A0AE1AB-B283-40F9-91D1-167ABF06D720" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="279" TerritoryID="5" SalesQuota="300000.00" Bonus="6700.00" CommissionPct="0.01" SalesYTD="2315185.61" SalesLastYear="1849640.94" rowguid="52A5179D-3239-4157-AE29-17E868296DC0" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="280" TerritoryID="1" SalesQuota="250000.00" Bonus="5000.00" CommissionPct="0.01" SalesYTD="1352577.13" SalesLastYear="1927059.18" rowguid="BE941A4A-FB50-4947-BDA4-BB8972365B08" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="281" TerritoryID="4" SalesQuota="250000.00" Bonus="3550.00" CommissionPct="0.01" SalesYTD="2458535.62" SalesLastYear="2073506.00" rowguid="35326DDB-7278-4FEF-B3BA-EA137B69094E" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="282" TerritoryID="6" SalesQuota="250000.00" Bonus="5000.00" CommissionPct="0.02" SalesYTD="2604540.72" SalesLastYear="2038234.65" rowguid="31FD7FC1-DC84-4F05-B9A0-762519EACACC" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="283" TerritoryID="1" SalesQuota="250000.00" Bonus="3500.00" CommissionPct="0.01" SalesYTD="1573012.94" SalesLastYear="1371635.32" rowguid="6BAC15B2-8FFB-45A9-B6D5-040E16C2073F" ModifiedDate="Jun 24 2005 12:00AM"/>
+<Row BusinessEntityID="284" TerritoryID="1" SalesQuota="300000.00" Bonus="3900.00" CommissionPct="0.02" SalesYTD="1576562.20" SalesLastYear="0.00" rowguid="AC94EC04-A2DC-43E3-8654-DD0C546ABC17" ModifiedDate="Oct 25 2006 12:00AM"/>
+<Row BusinessEntityID="285" TerritoryID="" SalesQuota="" Bonus="0.00" CommissionPct="0.00" SalesYTD="172524.45" SalesLastYear="0.00" rowguid="CFDBEF27-B1F7-4A56-A878-0221C73BAE67" ModifiedDate="Apr  8 2007 12:00AM"/>
+<Row BusinessEntityID="286" TerritoryID="9" SalesQuota="250000.00" Bonus="5650.00" CommissionPct="0.02" SalesYTD="1421810.92" SalesLastYear="2278548.98" rowguid="9B968777-75DC-45BD-A8DF-9CDAA72839E1" ModifiedDate="Jun 24 2007 12:00AM"/>
+<Row BusinessEntityID="287" TerritoryID="" SalesQuota="" Bonus="0.00" CommissionPct="0.00" SalesYTD="519905.93" SalesLastYear="0.00" rowguid="1DD1F689-DF74-4149-8600-59555EEF154B" ModifiedDate="May 11 2006 12:00AM"/>
+<Row BusinessEntityID="288" TerritoryID="8" SalesQuota="250000.00" Bonus="75.00" CommissionPct="0.02" SalesYTD="1827066.71" SalesLastYear="1307949.79" rowguid="224BB25A-62E3-493E-ACAF-4F8F5C72396A" ModifiedDate="Jun 24 2007 12:00AM"/>
+<Row BusinessEntityID="289" TerritoryID="10" SalesQuota="250000.00" Bonus="5150.00" CommissionPct="0.02" SalesYTD="4116871.23" SalesLastYear="1635823.40" rowguid="25F6838D-9DB4-4833-9DDC-7A24283AF1BA" ModifiedDate="Jun 24 2006 12:00AM"/>
+<Row BusinessEntityID="290" TerritoryID="7" SalesQuota="250000.00" Bonus="985.00" CommissionPct="0.02" SalesYTD="3121616.32" SalesLastYear="2396539.76" rowguid="F509E3D4-76C8-42AA-B353-90B7B8DB08DE" ModifiedDate="Jun 24 2006 12:00AM"/>
+</SalesPerson>
+

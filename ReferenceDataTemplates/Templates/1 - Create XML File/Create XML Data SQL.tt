@@ -1,0 +1,130 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".txt" #>
+<#@ assembly name="Microsoft.SqlServer.ConnectionInfo" #>
+<#@ assembly name="Microsoft.SqlServer.Smo" #>
+<#@ assembly name="Microsoft.SqlServer.Management.Sdk.Sfc" #>
+<#@ assembly name="System.Xml" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Common" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="..\Common\SQLConnection.tt" #>
+<#@ include file="..\Common\TemplateHelper.tt" #>
+<#@ parameter type="System.String" name="TableName" #><#@ parameter type="System.String" name="SchemaName" #><#
+
+    var tableName = SetTableName(TableName);
+    var schemaName = SetSchemaName(SchemaName);
+
+    //schemaName = "Sales";
+    //tableName = "SalesPerson";
+
+    ServerConnection serverConn = new ServerConnection();
+    serverConn.ServerInstance = GetSQLServerInstance();
+
+    if (GetSecureLogin() == true) {
+      serverConn.LoginSecure = true;
+    } else {
+      serverConn.LoginSecure = false;
+      serverConn.Login = GetSQLUsername();
+      serverConn.Password = GetSQLPassword();
+    }
+
+    Server server = new Server(serverConn);
+
+    Database database = new Database(server, GetSQLDatabase());
+    Table table = new Table(database, tableName, schemaName);
+    table.Refresh();
+
+#>SELECT 
+<#
+    PushIndent("       ");
+    var firstRow = true;
+    foreach (Column column in table.Columns)
+    {
+        if(firstRow == true) {
+            firstRow = false;
+        }
+        else {
+            WriteLine(",");
+        }
+
+        if(isMetaColumn(column.Name) == true) {
+            Write("\"@" + column.Name + "\" = '' ");
+        }
+        else {
+            Write(columnName(column));
+        }
+    }
+    PopIndent();
+    WriteLine("");
+#>
+FROM    [<#= table.Schema #>].[<#= table.Name #>]
+FOR XML PATH('Row'), ROOT('<#= table.Name #>')
+<#+
+// Insert any template procedures here
+
+public string columnName(Column column) {
+    string returnValue = "";
+
+    switch(column.DataType.Name) {
+        case "datetime":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "datetime2":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "datetimeoffset":
+        case "smalldatetime":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "date":
+        case "time":
+            returnValue = "\"@" + column.Name + "\" = ISNULL(CONVERT(VARCHAR(19), " + column.Name + ",126), '') ";
+            break;
+        case "uniqueidentifier":
+            returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS VARCHAR(50)), '') ";
+            break;
+        case "int":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(16)), '')";
+            break;	
+        case "bit":
+        case "smallint":		
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "bigint":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "smallmoney":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "money":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "float":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "real":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "numeric":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "decimal":
+                returnValue = "\"@" + column.Name + "\" = ISNULL(CAST(" + column.Name + " AS NVARCHAR(30)), '')";
+            break;	
+        case "varchar":
+        case "nvarchar":
+        case "char":
+        case "nchar":	
+            returnValue = "\"@" + column.Name + "\" = ISNULL(" + column.Name + ", '') ";
+            break;	
+        case "xml":
+                returnValue = "\"@" + column.Name + "\" = '<![CDATA[' + ISNULL(CAST(" + column.Name + " AS NVARCHAR(MAX)), '')  + ']]>' ";
+            break;
+        default:
+            returnValue = "\"@" + column.Name + "\" = ISNULL(" + column.Name + ", '') ";
+            break;
+    }
+    return returnValue;
+}
+
+#>
