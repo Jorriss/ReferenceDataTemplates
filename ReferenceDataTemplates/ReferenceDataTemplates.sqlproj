@@ -111,9 +111,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Templates\2 - Create Merge\SQLConnection.cs">
-      <DependentUpon>Templates\2 - Create Merge\SQLConnection.tt</DependentUpon>
-    </Compile>
     <Compile Include="Templates\Common\TemplateHelper.cs">
       <DependentUpon>Templates\Common\TemplateHelper.tt</DependentUpon>
     </Compile>
